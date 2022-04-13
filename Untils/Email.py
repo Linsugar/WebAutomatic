@@ -10,9 +10,9 @@ class SendEmail(object):
     receivers = ['1753215994@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
     curPath = os.path.abspath("../Datas")
     Path = os.path.join(curPath, r"case.xlsx")
-    mail_host = "xxxxx"  # 设置服务器
-    mail_user = "xxxx"  # 用户名
-    mail_pass = "xxxxx"  # 口令
+    mail_host = ""  # 设置服务器
+    mail_user = ""  # 用户名
+    mail_pass = ""  # 口令
 
     def __init__(self):
         # 创建一个带附件的实例
