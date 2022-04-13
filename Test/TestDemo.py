@@ -29,3 +29,10 @@
 #     Tes = ConfigParams()
 #     Tes.MysqlParams()
 #     Tes.RedisParams()
+
+from Untils.LogFile import Logger
+
+if __name__ == '__main__':
+    va = Logger().logger
+    va.info("dsadasdadad")
+

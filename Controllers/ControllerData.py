@@ -4,7 +4,6 @@ import xlrd
 class CaseFile(object):
     curPath = os.path.abspath("../Datas")
     Path = os.path.join(curPath, r"case.xlsx")
-
     def __init__(self):
         """
         xlrd 最新版目前删除了xlsx的文件读取支持 最好使用vsrion = 1.2.0

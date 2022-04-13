@@ -10,3 +10,6 @@ class Login(object):
 
     def __del__(self):
         self.dr.close()
+
+if __name__ == '__main__':
+    Login()
