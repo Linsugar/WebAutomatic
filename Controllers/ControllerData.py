@@ -1,15 +1,17 @@
 import os
 import xlrd
-
+from Untils.LogFile import Logger
 class CaseFile(object):
-    curPath = os.path.abspath("../Datas")
+    curPath = os.path.abspath(r"../Datas")
     Path = os.path.join(curPath, r"case.xlsx")
+
     def __init__(self):
         """
         xlrd 最新版目前删除了xlsx的文件读取支持 最好使用vsrion = 1.2.0
         """
+        self.log = Logger().logger
         print(self.Path)
-        self.file = xlrd.open_workbook(self.Path)
+        self.file = xlrd.open_workbook(r"D:\WebAutomatic\Datas\case.xlsx")
         self.sheets = self.file.sheet_names()
         self.sheet_dict = {}
         self.file_dict()
@@ -37,23 +39,32 @@ class CaseFile(object):
         :param h: h代表当前要运行的最大行数
         :return:
         """
+        case_list = []
+
         if h != 0 and h <= self.sheet_dict[self.sheets[sht]]:
             for i in range(case, h):
                 result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
                 print(result)
+                case_list.append(result)
         else:
             if case == 0:
                 for i in range(case+1, n):
                     result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
                     print(result)
+                    case_list.append(result)
             elif case != 0 and case < self.sheet_dict.get(self.sheets[sht]):
                 for i in range(case, n):
                      result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
                      print(result)
+                     case_list.append(result)
             else:
                 for i in range(case, n):
                      result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
                      print(result)
+                     case_list.append(result)
+            self.log.info("本次要执行的用例case==" +str(self.sheets[sht])+str(case_list))
+            return case_list
+
 
     def file_dict(self):
         """
@@ -67,4 +78,4 @@ class CaseFile(object):
 
 if __name__ == '__main__':
     Demo = CaseFile()
-    Demo.sheet_file(3)
+    Demo.sheet_file(100)
