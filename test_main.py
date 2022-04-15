@@ -17,9 +17,11 @@ class TestCase(object):
     def teardown(self):
         print("teardown：每个用例结束后都会执行")
 
-    def test_three(self,data):
-        CaseFile().read_sheet()
+    def test_three(self, data):
+        value = CaseFile().read_sheet()
+        print("得到反馈：" + str(value))
         print(data)
+
         print("正在执行测试类----test_three")
         x = "this"
         assert 'h' in x

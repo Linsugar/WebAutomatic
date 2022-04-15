@@ -1,7 +1,7 @@
 import os
 import xlrd
 from Untils.LogFile import Logger
-class CaseFile(object):
+class CaseFile:
     curPath = os.path.abspath(r"../Datas")
     Path = os.path.join(curPath, r"case.xlsx")
 
@@ -31,38 +31,41 @@ class CaseFile(object):
         else:
             self.read_sheet(case, self.sheet_dict.get(self.sheets[sht]), sht, h)
 
-    def read_sheet(self, case=0, n=0, sht=0, h=0):
+    def read_sheet(self, n=0, sht=0, h=0, dorun=0):
         """
-        :param case: 0代表对当前sheet页全部运行
+        :param dorun:
         :param n: n代表当前sheet总的行数
         :param sht: sht代表当前要运行的sheet
         :param h: h代表当前要运行的最大行数
         :return:
         """
-        case_list = []
-
-        if h != 0 and h <= self.sheet_dict[self.sheets[sht]]:
-            for i in range(case, h):
-                result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
-                print(result)
-                case_list.append(result)
-        else:
-            if case == 0:
-                for i in range(case+1, n):
-                    result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
-                    print(result)
-                    case_list.append(result)
-            elif case != 0 and case < self.sheet_dict.get(self.sheets[sht]):
-                for i in range(case, n):
-                     result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
-                     print(result)
-                     case_list.append(result)
+        if len(self.sheet_dict)-sht >= 0:
+            shs = self.sheet_dict[self.sheets[sht]]
+            case_list = []
+            if n == 0 and sht == 0 and h == 0 and dorun == 0:
+                """默认进行第一页的全部读取"""
+                for i in range(1, shs):
+                        result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
+                        case_list.append(result)
+                        print("case list == "+str(case_list))
+            elif dorun != 0:
+                """进行所有sheet页的用例数据读取"""
+                for (k, v) in self.sheet_dict.items():
+                    for i in range(1, v):
+                        result = self.file.sheet_by_name(k).row_values(i)
+                        case_list.append(result)
             else:
-                for i in range(case, n):
-                     result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
-                     print(result)
-                     case_list.append(result)
-            self.log.info("本次要执行的用例case==" +str(self.sheets[sht])+str(case_list))
+                """根据给的参数来执行对应sheet 的case"""
+                if h < n >= 0:
+                    for i in range(n+1, h):
+                        result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
+                        case_list.append(result)
+                    print("case list1 == " + str(case_list))
+                else:
+                    for i in range(n+1, n+3):
+                        result = self.file.sheet_by_name(self.sheets[sht]).row_values(i)
+                        case_list.append(result)
+                    print("case list2 == " + str(case_list))
             return case_list
 
 
@@ -74,8 +77,6 @@ class CaseFile(object):
         for i in self.sheets:
             self.sheet_dict[i] = self.file.sheet_by_name(i).nrows
 
-
-
 if __name__ == '__main__':
     Demo = CaseFile()
-    Demo.sheet_file(100)
+    Demo.read_sheet(sht=2)

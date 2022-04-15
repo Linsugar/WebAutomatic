@@ -29,10 +29,23 @@
 #     Tes = ConfigParams()
 #     Tes.MysqlParams()
 #     Tes.RedisParams()
+#
+# from Untils.LogFile import Logger
+#
+# if __name__ == '__main__':
+#     va = Logger().logger
+#     va.info("dsadasdadad")
 
-from Untils.LogFile import Logger
+# v = {"xs":"2","xs2"}
+# print(len(v))
 
-if __name__ == '__main__':
-    va = Logger().logger
-    va.info("dsadasdadad")
+import Common.UseDirXpath as Use
 
+import os
+import yaml
+path = os.path.join(Use.conf_path, "Login.yaml")
+print(path)
+va = yaml.load_all(path,yaml.FullLoader)
+with open(path,"r")as f:
+    va=yaml.load(f,yaml.FullLoader)
+    print(va["login"]["ID"])

@@ -16,14 +16,14 @@ class SelectDo(MethodDo):
         """进行输入值"""
         pass
 
-    def method_name(self):
-        """进行点击"""
-        pass
-
-    def method_class(self):
-        """进行点击"""
-        pass
-
-    def method_text(self):
-        """进行点击"""
-        pass
+    # def method_name(self):
+    #     """进行点击"""
+    #     pass
+    #
+    # def method_class(self):
+    #     """进行点击"""
+    #     pass
+    #
+    # def method_text(self):
+    #     """进行点击"""
+    #     pass

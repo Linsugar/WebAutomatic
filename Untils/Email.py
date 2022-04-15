@@ -4,15 +4,17 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
 
+from Controllers.ControllerConfig import ConfigParams
 
-class SendEmail(object):
-    sender = '1753215994@qq.com'
-    receivers = ['1753215994@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+
+class SendEmail():
+    sender: str
+    receivers: str  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
     curPath = os.path.abspath("../Datas")
     Path = os.path.join(curPath, r"case.xlsx")
-    mail_host = ""  # 设置服务器
-    mail_user = ""  # 用户名
-    mail_pass = ""  # 口令
+    mail_host: str  # 设置服务器
+    mail_user: str   # 用户名
+    mail_pass: str   # 口令
 
     def __init__(self):
         # 创建一个带附件的实例
@@ -21,6 +23,8 @@ class SendEmail(object):
         self.message['To'] = Header("测试", 'utf-8')
         self.subject = '关于本次邮件的迭代回归测试'
         self.message['Subject'] = Header(self.subject, 'utf-8')
+        self.sender, self.receivers, self.mail_host, self.mail_user, self.mail_pass = ConfigParams().Email()
+
 
     def send_email(self):
         # 邮件正文内容

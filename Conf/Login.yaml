@@ -1,0 +1,6 @@
+login:
+  Id: "#login"
+  Send_Keys: "123456"
+  ID: "inp"
+  Send_Keys: "123456"
+  Click: "#btn"
