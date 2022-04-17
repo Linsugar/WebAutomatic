@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 @Time    : 2022/4/15 0015 16:29
 @Author  : 糖糖
 @File    : UseDirXpath.py
-'''
+@desc: 这里主要是为了获取到每个模块的路径
+"""
 import os
 
 # 获取根路径-准备进行匹配
