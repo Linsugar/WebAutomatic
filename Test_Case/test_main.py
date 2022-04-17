@@ -1,7 +1,11 @@
 import pytest
 from Controllers.ControllerData import CaseFile
 
+import allure
 
+
+@allure.title("一级目录")
+@allure.epic("TestCase一级目录")
 class TestCase(object):
     # def setup_class(self):
     #     print("setup_class：所有用例执行之前")
