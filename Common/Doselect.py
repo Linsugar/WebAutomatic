@@ -1,4 +1,4 @@
-from Common.Login import Login
+from Common.basepage import Login
 
 from Common.Domethod import MethodDo
 

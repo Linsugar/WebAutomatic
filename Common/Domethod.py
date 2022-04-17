@@ -1,7 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from Untils.LogFile import Logger
-from Common.Login import Login
-
+from Common.basepage import BasePage
+import time
 
 def driver_wait(dr, by, value):
     # log = Logger().logger
@@ -16,7 +16,8 @@ def driver_wait(dr, by, value):
     element = WebDriverWait(dr, 10).until(lambda driver: dr.find_element(by, value))
     return element
 
-class MethodDo(Login):
+
+class MethodDo(BasePage):
     log = Logger().logger
 
     def __init__(self):
@@ -27,36 +28,36 @@ class MethodDo(Login):
     def select_method(value):
         value = str(value).lower()
         print(value)
-        if value == "xapth":
-            print("22")
 
-    def method_xpath(self, value):
-        return driver_wait(self.dr, self.By.XPATH, value)
+    def method_common(self, loc):
+        return self.dr.find_element(*loc)
 
-    def method_id(self, value):
-        return driver_wait(self.dr, self.By.ID, value)
+    def method_input(self, loc, value):
+        self.method_common(loc).send_keys(value)
 
-    def method_name(self, value):
-        return driver_wait(self.dr, self.By.NAME, value)
+    def method_click(self, loc):
+        self.method_common(loc).click()
 
-    def method_class(self, value):
-        return driver_wait(self.dr, self.By.CLASS_NAME, value)
+    def method_value(self, loc):
+        res = self.method_common(loc).text
+        return res
+
+    def method_clear(self, loc):
+        self.method_common(loc).clear()
 
     @staticmethod
-    def method_text(self, value):
-        return driver_wait(self.dr, self.By.LINK_TEXT, value)
-
-    def __del__(self):
-        self.dr.quit()
+    def method_wait(t: int = None):
+        time.sleep(t)
 
 def test():
     print(1)
+
 
 if __name__ == '__main__':
     m = MethodDo()
     f = getattr(m, "method_xpath", None)
     f("xpath")
-    #类似与improt MthodDo
+    # 类似与improt MthodDo
     # imp = input("请输入模块:")
     # dd = __import__("test")  # 等价于import imp
     # # inp_func = input("请输入要执行的函数：")
