@@ -1,6 +1,11 @@
 login:
-  Id: "#login"
-  Send_Keys: "123456"
-  ID: "inp"
-  Send_Keys: "123456"
-  Click: "#btn"
+  - xpath :
+     path : '//*[@id="loginPage"]/div[1]/div[2]/form/div[1]/div/div/input'
+     Send_Value: "admin"
+  - xpath:
+     path: '//*[@id="loginPage"]/div[1]/div[2]/form/div[2]/div/div/input'
+     Send_Value: "123456"
+  - xpath:
+     path: '//*[@id="loginPage"]/div[1]/div[3]'
+     click: 1
+

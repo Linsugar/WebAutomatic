@@ -1,5 +1,3 @@
-from Common.basepage import Login
-
 from Common.Domethod import MethodDo
 
 class SelectDo(MethodDo):

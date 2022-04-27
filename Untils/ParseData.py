@@ -8,6 +8,7 @@
 import yaml
 import json
 from Untils.LogFile import Logger
+from Common.UseDirXpath import conf_path
 log = Logger().logger
 
 def parse_data_yaml(xpath: str = None):
@@ -38,4 +39,4 @@ def pares_data_json(data):
 
 if __name__ == '__main__':
     s = '["123","123"]'
-    pares_data_json(s)
+    parse_data_yaml(conf_path+'/login.yaml')
