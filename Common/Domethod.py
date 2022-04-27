@@ -1,7 +1,8 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from Untils.LogFile import Logger
-from Common.basepage import BasePage
 import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 def driver_wait(dr, by, value):
     # log = Logger().logger
@@ -17,7 +18,7 @@ def driver_wait(dr, by, value):
     return element
 
 
-class MethodDo(BasePage):
+class MethodDo():
     log = Logger().logger
 
     def __init__(self):
@@ -29,21 +30,28 @@ class MethodDo(BasePage):
         value = str(value).lower()
         print(value)
 
-    def method_common(self, loc):
-        return self.dr.find_element(*loc)
+    def method_common(self, loc,dr):
+        # return self.dr.find_element(By.XPATH,loc['path'])
+        try:
+            WebDriverWait(dr, 20,0.5).until(EC.presence_of_element_located((By.XPATH, loc['path'])))
+            return dr.find_element(By.XPATH, loc['path'])
 
-    def method_input(self, loc, value):
-        self.method_common(loc).send_keys(value)
+        except Exception as e:
+            self.log.info("查找元素出错----原因{0}".format(e))
 
-    def method_click(self, loc):
-        self.method_common(loc).click()
+    def method_input(self, loc,dr):
+        print("method_input===%s",loc)
+        self.method_common(loc,dr).send_keys(loc['value'])
 
-    def method_value(self, loc):
-        res = self.method_common(loc).text
+    def method_click(self, loc,dr):
+        self.method_common(loc,dr).click()
+
+    def method_value(self, loc,dr):
+        res = self.method_common(loc,dr).text
         return res
 
     def method_clear(self, loc):
-        self.method_common(loc).clear()
+        self.method_common(loc,dr).clear()
 
     @staticmethod
     def method_wait(t: int = None):

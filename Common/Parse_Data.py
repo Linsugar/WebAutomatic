@@ -15,7 +15,7 @@ log = Logger().logger
 
 
 def read_yaml(name: str = None):
-    with open(UseDirXpath.conf_path + name, mode="r") as f:
+    with open(name, mode="r") as f:
         value = yaml.load(f, yaml.FullLoader)
         log.info("从哪个文件{0}，获取到的数据内容是{1}".format(UseDirXpath.conf_path + name, value))
         return value
@@ -30,3 +30,7 @@ def write_yaml(name: str = None, data: dict = None):
 def clear_yaml(name: str = None):
     with open(UseDirXpath.conf_path + name, mode="w") as f:
         f.truncate()
+
+
+if __name__ == '__main__':
+    read_yaml(UseDirXpath.yaml_path+r"\HomePage\home.yaml")

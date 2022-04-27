@@ -1,11 +1,14 @@
 login:
-  - xpath :
+  -
      path : '//*[@id="loginPage"]/div[1]/div[2]/form/div[1]/div/div/input'
-     Send_Value: "admin"
-  - xpath:
+     method: "value"
+     value: "tanglin"
+  -
      path: '//*[@id="loginPage"]/div[1]/div[2]/form/div[2]/div/div/input'
-     Send_Value: "123456"
-  - xpath:
+     method: "value"
+     value: "123456"
+  -
      path: '//*[@id="loginPage"]/div[1]/div[3]'
+     method: "click"
      click: 1
 

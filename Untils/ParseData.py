@@ -17,7 +17,8 @@ def parse_data_yaml(xpath: str = None):
         with open(xpath, "r")as f:
             data = yaml.load(f, yaml.FullLoader)
             log.info("解析完成{0}".format(data))
-            return data
+            print(data['login'])
+            return data['login']
     else:
         log.info("解析失败")
         return None
@@ -39,4 +40,4 @@ def pares_data_json(data):
 
 if __name__ == '__main__':
     s = '["123","123"]'
-    parse_data_yaml(conf_path+'/login.yaml')
+    parse_data_yaml(conf_path+'/Login.yaml')

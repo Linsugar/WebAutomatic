@@ -22,6 +22,9 @@ case_path = os.path.join(root_path, "Datas")
 #获取配置路径
 conf_path = os.path.join(root_path, "Conf")
 
+#获取page-yaml路径
+yaml_path = os.path.join(root_path, "Pages")
+
 #获取工具路径
 untils_path = os.path.join(root_path, "Untils")
 
